@@ -22,15 +22,21 @@
     </style>
 </head>
 <body>
-    <script>
-        setTimeout(function () {
-            document.getElementById('myVideo').play();
-        }, 1000);
-    </script>
-
-    <video id="myVideo" playsinline muted controls>
+    <video id="myVideo" playsinline muted>
         <source src="Rick Roll.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+
+    <script>
+        var video = document.getElementById('myVideo');
+
+        video.addEventListener('ended', function () {
+            setTimeout(function () {
+                video.play();
+            }, 1000);
+        });
+
+        video.play();
+    </script>
 </body>
 </html>
