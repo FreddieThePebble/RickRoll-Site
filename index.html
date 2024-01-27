@@ -29,12 +29,13 @@
 
     <script>
         var video = document.getElementById('myVideo');
+        var startedPlayback = false;
 
         function startVideoPlayback() {
-            video.play();
-            // Remove the event listeners after the first interaction
-            document.removeEventListener('pointerdown', startVideoPlayback);
-            document.removeEventListener('mousemove', startVideoPlayback);
+            if (!startedPlayback) {
+                video.play();
+                startedPlayback = true;
+            }
         }
 
         document.addEventListener('pointerdown', startVideoPlayback);
