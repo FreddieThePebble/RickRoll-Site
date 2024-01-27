@@ -22,9 +22,23 @@
     </style>
 </head>
 <body>
-    <video playsinline autoplay>
+    <video id="myVideo" playsinline muted>
         <source src="Rick Roll.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+
+    <script>
+        var video = document.getElementById('myVideo');
+
+        function startVideoPlayback() {
+            video.play();
+            // Remove the event listeners after the first interaction
+            document.removeEventListener('click', startVideoPlayback);
+            document.removeEventListener('mousemove', startVideoPlayback);
+        }
+
+        document.addEventListener('click', startVideoPlayback);
+        document.addEventListener('mousemove', startVideoPlayback);
+    </script>
 </body>
 </html>
