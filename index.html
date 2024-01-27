@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title> </title>
     <style>
         body {
             margin: 0;
@@ -22,28 +22,15 @@
     </style>
 </head>
 <body>
-    <video id="myVideo" playsinline autoplay>
+    <script>
+        setTimeout(function () {
+            document.getElementById('myVideo').play();
+        }, 1000);
+    </script>
+
+    <video id="myVideo" loop playsinline muted controls>
         <source src="your_video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-
-    <script>
-        var video = document.getElementById('myVideo');
-
-        // Ensure the video has loaded metadata before attempting to play
-        video.addEventListener('loadedmetadata', function() {
-            video.muted = false; // Unmute the video
-            video.play();
-        });
-
-        // Add a click event listener to pause/play the video
-        document.addEventListener('click', function() {
-            if (video.paused) {
-                video.play();
-            } else {
-                video.pause();
-            }
-        });
-    </script>
 </body>
 </html>
