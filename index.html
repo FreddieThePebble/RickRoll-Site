@@ -34,14 +34,10 @@
         const video = document.getElementById('fullscreen-video');
 
         document.addEventListener('click', () => {
-            if (video.paused) {
+            setTimeout(() => {
+                video.muted = false;
                 video.play();
-            }
-        });
-
-        // Unmute the video when the first frame has loaded
-        video.addEventListener('loadeddata', () => {
-            video.muted = false;
+            }, 200); // 200 milliseconds delay
         });
     </script>
 </body>
