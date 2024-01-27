@@ -3,34 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> </title>
+    <title>Full Screen Video</title>
     <style>
-        body {
+        body, html {
             margin: 0;
+            padding: 0;
             overflow: hidden;
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
 
         video {
-            width: 100%;
-            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <script>
-        setTimeout(function () {
-            document.getElementById('myVideo').play();
-        }, 1000);
-    </script>
-
-    <video id="myVideo" loop playsinline muted controls>
-        <source src="your_video.mp4" type="video/mp4">
+    <video id="fullscreen-video" preload="auto" autoplay loop muted playsinline>
+        <source src="Rick Roll.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+
+    <script>
+        const video = document.getElementById('fullscreen-video');
+
+        document.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                video.removeAttribute('controls');
+            } else {
+                video.pause();
+            }
+        });
+    </script>
 </body>
 </html>
