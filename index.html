@@ -9,6 +9,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
+            height: 100%;
         }
 
         video {
@@ -23,18 +24,26 @@
     </style>
 </head>
 <body>
-    <video id="fullscreen-video" preload="auto" autoplay loop muted playsinline>
-        <source src="Rick Roll.mp4" type="video/mp4">
+    <video id="fullscreen-video" preload="auto" loop muted playsinline>
+        <source src="your-video.mp4" type="video/mp4">
+        <!-- Add additional source elements for other video formats if needed -->
         Your browser does not support the video tag.
     </video>
 
     <script>
         const video = document.getElementById('fullscreen-video');
+        let firstClick = true;
 
         document.addEventListener('click', () => {
+            if (firstClick) {
+                // Unmute after the first click
+                video.muted = false;
+                firstClick = false;
+            }
+
+            // Toggle between play and pause on subsequent clicks
             if (video.paused) {
                 video.play();
-                video.removeAttribute('controls');
             } else {
                 video.pause();
             }
