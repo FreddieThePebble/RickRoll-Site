@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,33 +19,31 @@
             width: 100%;
             height: 100%;
         }
-
-        #playButton {
-            position: absolute;
-            z-index: 1;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
-    <div id="playButton" onclick="startVideoPlayback()">Click to Play</div>
-
-    <video id="myVideo" playsinline>
+    <video id="myVideo" playsinline autoplay>
         <source src="your_video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
     <script>
         var video = document.getElementById('myVideo');
-        var playButton = document.getElementById('playButton');
 
-        function startVideoPlayback() {
+        // Ensure the video has loaded metadata before attempting to play
+        video.addEventListener('loadedmetadata', function() {
+            video.muted = false; // Unmute the video
             video.play();
-            playButton.style.display = 'none'; // Hide the play button after playback starts
-        }
+        });
 
-        document.addEventListener('pointerdown', startVideoPlayback);
-        document.addEventListener('mousemove', startVideoPlayback);
+        // Add a click event listener to pause/play the video
+        document.addEventListener('click', function() {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
     </script>
 </body>
 </html>
